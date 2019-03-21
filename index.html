@@ -348,7 +348,7 @@
                 
               
 
-              <time title="创建时间：2019-03-21 17:27:41 / 修改时间：18:35:19" itemprop="dateCreated datePublished" datetime="2019-03-21T17:27:41+08:00">2019-03-21</time>
+              <time title="创建时间：2019-03-21 17:27:41 / 修改时间：18:44:30" itemprop="dateCreated datePublished" datetime="2019-03-21T17:27:41+08:00">2019-03-21</time>
             
 
             
@@ -388,22 +388,19 @@
 
       
         
+          <p>5G AKA通过为归属网络提供从访问网络成功认证UE的证据来增强EPS AKA<br>
+          <!--noindex-->
           
-            <p>   5G AKA通过为归属网络提供从访问网络成功认证UE的证据来增强EPS AKA；从具体的流程对比来看，EPS的AKA流程是归属网络鉴权中心给访问网络的MME提供一组鉴权向量和XRES，由访问网络拿着这些参数对UE进行鉴权，归属网络并不关心UE的鉴权结果，5G AKA流程归属网络鉴权中心也是给访问网络的安全锚点（SEAF，和AMF在一起）一组5G鉴权向量和对应的HXRES*，访问网络用这些参数对UE鉴权后，还需要将UE的鉴权响应发给归属网络鉴权中心做进一步的鉴权，归属网络再将鉴权结果发给访问网络，可见5G下归属网络会参与鉴权做出最后的鉴权结果。</p>
-<h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Serving network initiate an authentication with UE</span><br></pre></td></tr></table></figure>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UE send SUCI(include encrypted SUPI and HN<span class="string">'s id) to SN</span></span><br></pre></td></tr></table></figure>
-<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SN send SUCI and SNname request authentication material from HN via HN<span class="string">'s id</span></span><br></pre></td></tr></table></figure>
-<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HN selects a random nonce R, <span class="keyword">then</span> computes the authentication material</span><br><span class="line">MAC = f1(K , &lt; SQN_HN, R&gt;)</span><br><span class="line">Anonymity Key = f5(K, R)</span><br><span class="line">CONC = SQN_HN⊕ AK</span><br><span class="line">AUTN = &lt;CONC, MAC&gt;</span><br><span class="line">xRES∗  = Challenge(K, R, SNname)    this is the full response of challenge</span><br><span class="line">HXRES∗  = SHA256(&lt;R , xRES∗&gt;)     this is the <span class="built_in">hash</span> of full response</span><br><span class="line">K_SEAF  = KeySeed(K, R, SQN_HN, SNname)   key seed <span class="keyword">for</span> the secure channel between subscriber and SN</span><br><span class="line">SQN_HN  = SQN_HN  + 1</span><br></pre></td></tr></table></figure>
-<h3 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Return R, AUTN, HXRES^∗  and K_SEAF  to the SN</span><br></pre></td></tr></table></figure>
-<h3 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SN send R and AUTN to subscriber</span><br></pre></td></tr></table></figure>
-<h3 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Subscriber first checks the authenticity and freshness, to <span class="keyword">do</span> this it </span><br><span class="line">  a. Compute MAC, checks <span class="keyword">if</span> xMAC is equal to MAC</span><br><span class="line">    MAC = f1(K , &lt; SQN_HN, R&gt;)  </span><br><span class="line">    AUTN contains xMAC</span><br><span class="line">  b. Compute xSQN_HN  = AK ⊕ xCONC, checks <span class="keyword">if</span> SQN_UE&lt;xSQN_HN</span><br><span class="line">  c. If all checks hold, <span class="keyword">do</span> the following things</span><br><span class="line">    SQN_UE  = xSQN_HN  + 1</span><br><span class="line">    RES^∗  = Challenge(K, R, SNname)</span><br><span class="line">    K_SEAF  = KeySeed(K, R, SQN_HN, SNname)</span><br><span class="line">Then send the  RES^∗  to the SN</span><br></pre></td></tr></table></figure>
-<h3 id="8"><a href="#8" class="headerlink" title="8."></a>8.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SN checks <span class="keyword">if</span> SHA256(&lt;R , RES∗&gt;) is equal to the HXRES^∗  <span class="keyword">if</span> so send RES  and SUCI to HN, otherwise abort</span><br></pre></td></tr></table></figure>
-<h3 id="9"><a href="#9" class="headerlink" title="9."></a>9.</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HN checks <span class="keyword">if</span> 〖RES〗^∗  = 〖xRES〗^∗, <span class="keyword">if</span> not abort, <span class="keyword">if</span> so <span class="built_in">return</span> SUPI to SN and finish the authentication</span><br></pre></td></tr></table></figure>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/21/5G/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
 
     
 
@@ -500,7 +497,7 @@
                 
               
 
-              <time title="创建时间：2019-03-21 16:16:01 / 修改时间：17:26:38" itemprop="dateCreated datePublished" datetime="2019-03-21T16:16:01+08:00">2019-03-21</time>
+              <time title="创建时间：2019-03-21 16:16:01 / 修改时间：18:44:49" itemprop="dateCreated datePublished" datetime="2019-03-21T16:16:01+08:00">2019-03-21</time>
             
 
             
@@ -540,18 +537,16 @@
 
       
         
+          <p>欢迎来到<a href="https://mjhzds.github.io">昨日深蓝</a>的主页。</p>
+          <!--noindex-->
           
-            <p>欢迎来到<a href="https://mjhzds.github.io">昨日深蓝</a>的主页。</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/21/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
