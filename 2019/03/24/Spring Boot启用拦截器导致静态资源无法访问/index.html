@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="昨日深蓝">
 <meta property="og:description" content="最近在开发Spring Boot项目时遇到了静态资源无法访问的错误，原因是启用了WebMvcConfigurationSupport，解决方案如下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-24T08:50:23.242Z">
+<meta property="og:updated_time" content="2019-07-05T15:10:53.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot启用拦截器导致静态资源无法访问">
 <meta name="twitter:description" content="最近在开发Spring Boot项目时遇到了静态资源无法访问的错误，原因是启用了WebMvcConfigurationSupport，解决方案如下。">
@@ -349,12 +349,24 @@
                 
               
 
-              <time title="创建时间：2019-03-24 16:43:48 / 修改时间：16:50:23" itemprop="dateCreated datePublished" datetime="2019-03-24T16:43:48+08:00">2019-03-24</time>
+              <time title="创建时间：2019-03-24 16:43:48" itemprop="dateCreated datePublished" datetime="2019-03-24T16:43:48+08:00">2019-03-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-05 23:10:53" itemprop="dateModified" datetime="2019-07-05T23:10:53+08:00">2019-07-05</time>
               
             
           </span>
@@ -391,6 +403,7 @@
         <p>最近在开发Spring Boot项目时遇到了静态资源无法访问的错误，原因是启用了WebMvcConfigurationSupport，解决方案如下。</p>
 <a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">    registry.addResourceHandler(<span class="string">"/**"</span>)</span><br><span class="line">            .addResourceLocations(<span class="string">"classpath:/META-INF/resources/"</span>)</span><br><span class="line">            .addResourceLocations(<span class="string">"classpath:/resources/"</span>)</span><br><span class="line">            .addResourceLocations(<span class="string">"classpath:/static/"</span>)</span><br><span class="line">            .addResourceLocations(<span class="string">"classpath:/public/"</span>);</span><br><span class="line">    <span class="keyword">super</span>.addResourceHandlers(registry);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -429,6 +442,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/05/Android Studio模拟器unauthorized解决办法/" rel="prev" title="Android Studio模拟器未授权（一直离线）解决方案">
+                Android Studio模拟器未授权（一直离线）解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -488,7 +505,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
