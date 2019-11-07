@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="今天在更新Android Studio之后发现模拟器一直离线，不能调试了，谷歌上找了很多发现了一个最快的解决办法。">
+  <meta name="description" content="回溯算法是一种穷举方法，也是递归过程的一种，目标是在所有可能的情况中找出符合要求的解。当发现当前的解不符合要求时进行回退，退到上一个状态重新开始选择。">
 <meta name="keywords" content="IT 技术博客">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Studio模拟器未授权（一直离线）解决方案">
-<meta property="og:url" content="https://mjhzds.github.io/2019/07/05/Android Studio模拟器unauthorized解决办法/index.html">
+<meta property="og:title" content="回溯算法">
+<meta property="og:url" content="https://mjhzds.github.io/2019/11/07/回溯算法/index.html">
 <meta property="og:site_name" content="昨日深蓝">
-<meta property="og:description" content="今天在更新Android Studio之后发现模拟器一直离线，不能调试了，谷歌上找了很多发现了一个最快的解决办法。">
+<meta property="og:description" content="回溯算法是一种穷举方法，也是递归过程的一种，目标是在所有可能的情况中找出符合要求的解。当发现当前的解不符合要求时进行回退，退到上一个状态重新开始选择。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-05T15:14:41.325Z">
+<meta property="og:updated_time" content="2019-11-07T12:27:59.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Studio模拟器未授权（一直离线）解决方案">
-<meta name="twitter:description" content="今天在更新Android Studio之后发现模拟器一直离线，不能调试了，谷歌上找了很多发现了一个最快的解决办法。">
+<meta name="twitter:title" content="回溯算法">
+<meta name="twitter:description" content="回溯算法是一种穷举方法，也是递归过程的一种，目标是在所有可能的情况中找出符合要求的解。当发现当前的解不符合要求时进行回退，退到上一个状态重新开始选择。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://mjhzds.github.io/2019/07/05/Android Studio模拟器unauthorized解决办法/">
+  <link rel="canonical" href="https://mjhzds.github.io/2019/11/07/回溯算法/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>Android Studio模拟器未授权（一直离线）解决方案 | 昨日深蓝</title>
+  <title>回溯算法 | 昨日深蓝</title>
   
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mjhzds.github.io/2019/07/05/Android Studio模拟器unauthorized解决办法/">
+    <link itemprop="mainEntityOfPage" href="https://mjhzds.github.io/2019/11/07/回溯算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Elvis">
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android Studio模拟器未授权（一直离线）解决方案
+          <h1 class="post-title" itemprop="name headline">回溯算法
 
               
             
@@ -349,7 +349,7 @@
                 
               
 
-              <time title="创建时间：2019-07-05 23:05:05 / 修改时间：23:14:41" itemprop="dateCreated datePublished" datetime="2019-07-05T23:05:05+08:00">2019-07-05</time>
+              <time title="创建时间：2019-11-07 20:22:45 / 修改时间：20:27:59" itemprop="dateCreated datePublished" datetime="2019-11-07T20:22:45+08:00">2019-11-07</time>
             
 
             
@@ -388,18 +388,9 @@
       
 
       
-        <p>今天在更新Android Studio之后发现模拟器一直离线，不能调试了，谷歌上找了很多发现了一个最快的解决办法。</p>
-<a id="more"></a>
-<p>问题描述：</p>
-<p>调试运行的时候AVD管理界面显示设备离线，run窗口出现以下错误：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">error: device unauthorized.</span><br><span class="line"></span><br><span class="line">This adb server’s $ADB_VENDOR_KEYS is <span class="keyword">not</span> <span class="built_in">set</span></span><br><span class="line"></span><br><span class="line">Try ‘adb kill-server’ <span class="keyword">if</span> that seems wrong.</span><br><span class="line"></span><br><span class="line">Otherwise check <span class="keyword">for</span> a confirmation dialog on your device.</span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
-<ol>
-<li>删除.android/adbkey|adbkey.pub这两个文件（为保险起见，可以将两文件暂时移动出.android目录。.android目录默认在C盘下的当前用户目录下，如果配置了 ANDROID_SDK_HOME环境变量，那就是在这个变量值的目录下）；</li>
-<li>在AVD Manager中删除所有的avd，重新创建；</li>
-<li>执行下命令adb devices，看看虚拟机的状态吧；</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator&gt;adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">emulator<span class="number">-5556</span>   device</span><br></pre></td></tr></table></figure>
+        <p>回溯算法是一种穷举方法，也是递归过程的一种，目标是在所有可能的情况中找出符合要求的解。当发现当前的解不符合要求时进行回退，退到上一个状态重新开始选择。<br><a id="more"></a><br>回溯算法最重要的就是包含三个元素：终止条件，剪枝条件，递归过程。以LeetCode第93题复原IP地址为例介绍回溯的基本模板。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">restoreIpAddresses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        restoreIpAddresses(s, <span class="number">0</span>, res, stack);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回溯算法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s     题目参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> start 回溯算法一般都需要一个记录当前位置或者说进度的参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> res   结果存放的集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> stack 存放每一步产生的中间解，不一定符合题目条件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">restoreIpAddresses</span><span class="params">(String s, <span class="keyword">int</span> start, List&lt;String&gt; res, Stack&lt;String&gt; stack)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//终止条件</span></span><br><span class="line">        <span class="comment">//当stack中存放的数字小于4的时候显然不能构成解，接着向下求解</span></span><br><span class="line">        <span class="comment">//当stack中存放的数字个数等于4的时候判断当前位置是否走完了整个string</span></span><br><span class="line">        <span class="comment">//当栈中存放了4个数字且当前位置也走完了整个string就把结果放到res中</span></span><br><span class="line">        <span class="comment">//否则回溯到之前的状态，求下一个可能的解</span></span><br><span class="line">        <span class="keyword">if</span> (stack.size() == <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (start == s.length()) &#123;</span><br><span class="line">                res.add(String.join(<span class="string">"."</span>, stack));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//因为ip地址每个段对多三位所以可以对string分别按1,2,3位进行分割</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="comment">//如果当前位置+分割长度大于整个字符串的长度</span></span><br><span class="line">            <span class="comment">//或者说下一个分割点的长度大于字符串的长度</span></span><br><span class="line">            <span class="comment">//这种情况显然不能进行分割</span></span><br><span class="line">            <span class="keyword">if</span> (start + i &gt; s.length()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            String temp = s.substring(start, start + i);</span><br><span class="line">            <span class="comment">//剪枝条件</span></span><br><span class="line">            <span class="comment">//对截取的段进行判断是否能构成ip段</span></span><br><span class="line">            <span class="comment">//ip段可以为0~255之间的任意数字，但是01这种字符串是非法的需要剪枝</span></span><br><span class="line">            <span class="keyword">if</span> ((temp.startsWith(<span class="string">"0"</span>) &amp;&amp; temp.length() &gt; <span class="number">1</span>) || </span><br><span class="line">                    Integer.parseInt(temp) &gt; <span class="number">255</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(temp);</span><br><span class="line">            restoreIpAddresses(s, start + i, res, stack);</span><br><span class="line">            <span class="comment">//一定记得恢复现场，回退到上一步</span></span><br><span class="line">            stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常见的回溯算法基本可以按照这个模板进行编写，唯一改变的就是终止条件和剪枝条件。</p>
 
       
     </div>
@@ -430,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/21/5G/" rel="next" title="5G-AKA">
-                <i class="fa fa-chevron-left"></i> 5G-AKA
+              <a href="/2019/11/07/Java IO/" rel="next" title="Java IO">
+                <i class="fa fa-chevron-left"></i> Java IO
               </a>
             
           </div>
@@ -440,8 +431,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/07/Java IO/" rel="prev" title="Java IO">
-                Java IO <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/07/内部类/" rel="prev" title="Spring Boot启用拦截器导致静态资源无法访问">
+                Spring Boot启用拦截器导致静态资源无法访问 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
